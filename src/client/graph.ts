@@ -156,14 +156,25 @@ export function init(container: HTMLElement, data: PolyculeData): void {
     connectionCounts.set(r.to, (connectionCounts.get(r.to) ?? 0) + 1);
   });
 
+  const mainNodeId = data.settings.mainNode;
   const nodeCount = data.people.length;
-  const nodes: NodeDatum[] = data.people.map((p, i) => {
-    const angle = (i / nodeCount) * 2 * Math.PI;
-    const r = 220;
+  const nonMainCount = mainNodeId ? data.people.filter(p => p.id !== mainNodeId).length : nodeCount;
+  let nonMainIdx = 0;
+  const nodes: NodeDatum[] = data.people.map(p => {
+    if (p.id === mainNodeId) {
+      return {
+        ...p,
+        x: 480, y: 360,
+        vx: 0, vy: 0,
+        fx: 480, fy: 360, // pinned at center initially
+        connectionCount: connectionCounts.get(p.id) ?? 0,
+      };
+    }
+    const angle = (nonMainIdx++ / Math.max(nonMainCount, 1)) * 2 * Math.PI;
     return {
       ...p,
-      x: 480 + Math.cos(angle) * r,
-      y: 360 + Math.sin(angle) * r,
+      x: 480 + Math.cos(angle) * 220,
+      y: 360 + Math.sin(angle) * 220,
       vx: 0, vy: 0, fx: null, fy: null,
       connectionCount: connectionCounts.get(p.id) ?? 0,
     };
@@ -408,7 +419,8 @@ export function init(container: HTMLElement, data: PolyculeData): void {
 
   // ── Drag ─────────────────────────────────────────────────────────────────
 
-  let pinnedNode: NodeDatum | null = null;
+  // If a main node is configured, start with it pinned at center
+  let pinnedNode: NodeDatum | null = mainNodeId ? (nodeById.get(mainNodeId) ?? null) : null;
 
   const dragBehavior = d3drag<SVGGElement, NodeDatum>()
     .on('start', (event, d) => {

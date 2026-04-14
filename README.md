@@ -30,6 +30,9 @@ node dist/cli.js generate <input.yaml> [options]
 | `-n, --name <prefix>` | input filename | Output filename prefix |
 | `--width <px>` | `1400` | PNG output width in pixels |
 | `--title <title>` | `Polycule Map` | HTML page title |
+| `--legend` | off | Render relationship legend on SVG/PNG exports |
+| `--no-labels` | on | Hide edge label text on SVG/PNG exports |
+| `--no-names` | on | Hide node name labels on SVG/PNG exports |
 
 ### Examples
 
@@ -50,6 +53,7 @@ node dist/cli.js generate polycule.yaml --output ./out --format png --width 2400
 settings:
   theme: dark          # dark | light
   nodeScale: uniform   # uniform | connections (scales node size by number of relationships)
+  mainNode: alice      # optional — this person is placed at the centre of the graph
 
 people:
   - id: alice                        # unique identifier used in relationships
@@ -74,6 +78,7 @@ relationships:
 
 | Type | Line style |
 |---|---|
+| `primary_partner` | Solid thick, gold |
 | `partner` | Solid, pink |
 | `nesting_partner` | Double line, red |
 | `anchor_partner` | Dashed thick, dark red |
@@ -83,6 +88,7 @@ relationships:
 | `comet` | Long dash, grey |
 | `friend` | Solid thin, light blue |
 | `metamour` | Faint dotted, dark grey |
+| `tbd` | Dash-dot, grey |
 
 ## Embedding in a website
 
@@ -108,6 +114,8 @@ No framework required. Works in any HTML page.
 - **Click** a node to open an info panel with name, pronouns, and links
 - **☀ Light / ☾ Dark** button — toggle theme
 - **Legend** button — show/hide relationship type key
+- **Labels On/Off** button — toggle edge label text
+- **Names On/Off** button — toggle node name labels
 - **⊡ Fit** button — fit the whole graph into view
 
 ## Development

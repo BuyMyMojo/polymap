@@ -24,6 +24,7 @@ export function parseConfig(filePath: string): PolyculeData {
   const settings: Settings = {
     theme: s?.['theme'] === 'light' ? 'light' : 'dark',
     nodeScale: s?.['nodeScale'] === 'connections' ? 'connections' : 'uniform',
+    // mainNode validated below once person IDs are known
   };
 
   const people: Person[] = (data['people'] as unknown[]).map((p, i) => {
@@ -46,6 +47,12 @@ export function parseConfig(filePath: string): PolyculeData {
   });
 
   const ids = new Set(people.map(p => p.id));
+
+  const mainNodeRaw = s?.['mainNode'] != null ? String(s['mainNode']) : undefined;
+  if (mainNodeRaw !== undefined) {
+    if (!ids.has(mainNodeRaw)) throw new Error(`settings.mainNode "${mainNodeRaw}" is not a valid person id`);
+    settings.mainNode = mainNodeRaw;
+  }
 
   const relationships: Relationship[] = (data['relationships'] as unknown[]).map((r, i) => {
     const rel = r as Record<string, unknown>;

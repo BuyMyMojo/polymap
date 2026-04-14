@@ -35,6 +35,7 @@ export interface Relationship {
 export interface Settings {
   theme: 'dark' | 'light';
   nodeScale: 'uniform' | 'connections';
+  mainNode?: string;
 }
 
 export interface PolyculeData {
