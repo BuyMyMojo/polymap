@@ -1,0 +1,85 @@
+settings:
+  theme: dark
+  nodeScale: uniform
+
+people:
+  - id: aria
+    name: Aria
+    pronouns: she/her
+    color: "#e91e8c"
+    links:
+      - label: Website
+        url: "https://example.com/aria"
+      - label: Instagram
+        url: "https://instagram.com/aria"
+
+  - id: blake
+    name: Blake
+    pronouns: they/them
+    color: "#9c27b0"
+    links:
+      - label: Mastodon
+        url: "https://mastodon.social/@blake"
+
+  - id: cassidy
+    name: Cassidy
+    pronouns: she/they
+    color: "#2196f3"
+
+  - id: drew
+    name: Drew
+    pronouns: he/him
+    color: "#009688"
+    links:
+      - label: Twitter
+        url: "https://twitter.com/drew"
+
+  - id: elliot
+    name: Elliot
+    pronouns: he/they
+    color: "#ff9800"
+
+  - id: frankie
+    name: Frankie
+    pronouns: any/all
+    color: "#4caf50"
+
+relationships:
+  - from: aria
+    to: blake
+    type: partner
+    label: "partners"
+
+  - from: aria
+    to: cassidy
+    type: nesting_partner
+    label: "nesting"
+
+  - from: blake
+    to: drew
+    type: queerplatonic
+
+  - from: cassidy
+    to: drew
+    type: fwb
+
+  - from: blake
+    to: elliot
+    type: casual
+
+  - from: drew
+    to: frankie
+    type: anchor_partner
+    label: "anchors"
+
+  - from: aria
+    to: elliot
+    type: friend
+
+  - from: cassidy
+    to: frankie
+    type: comet
+
+  - from: elliot
+    to: frankie
+    type: metamour
