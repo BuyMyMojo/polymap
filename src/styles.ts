@@ -46,6 +46,12 @@ export const RELATIONSHIP_STYLES: Record<RelationshipType, RelationshipStyle> = 
     dashArray: '3,5',
     label: 'Casual',
   },
+  unlabeled: {
+    color: '#4548f2',
+    width: 2,
+    dashArray: '3,5',
+    label: 'Unlabeled',
+  },
   queerplatonic: {
     color: '#26de81',
     width: 2,

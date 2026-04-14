@@ -84,6 +84,7 @@ relationships:
 | `anchor_partner` | Dashed thick, dark red |
 | `fwb` | Dashed, purple |
 | `casual` | Dotted, cyan |
+| `unlabeled` | Dotted, blue-purple |
 | `queerplatonic` | Dash-dot, teal |
 | `comet` | Long dash, grey |
 | `friend` | Solid thin, light blue |

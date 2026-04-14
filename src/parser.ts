@@ -4,7 +4,7 @@ import type { PolyculeData, Settings, Person, Relationship, RelationshipType } f
 
 const VALID_TYPES = new Set<RelationshipType>([
   'primary_partner', 'partner', 'nesting_partner', 'anchor_partner', 'fwb', 'casual',
-  'queerplatonic', 'comet', 'friend', 'metamour', 'tbd',
+  'unlabeled', 'queerplatonic', 'comet', 'friend', 'metamour', 'tbd',
 ]);
 
 export function parseConfig(filePath: string): PolyculeData {

@@ -5,6 +5,7 @@ export type RelationshipType =
   | 'anchor_partner'
   | 'fwb'
   | 'casual'
+  | 'unlabeled'
   | 'queerplatonic'
   | 'comet'
   | 'friend'
